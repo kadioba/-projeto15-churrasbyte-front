@@ -1,17 +1,20 @@
 import useForm from "../../hooks/useForm";
 import { Link } from "react-router-dom";
 import { SignUpContainer, SignUpForm, SubmitButton } from "./styled";
+import { useSignUp } from "../../services/auth";
+import useHaveToken from "../../hooks/useHaveToken";
 
 export default function SignUp() {
     const { form, handleForm } = useForm({ name: "", email: "", password: "", confirmPassword: "" });
+    useHaveToken();
+    const signUp = useSignUp();
 
     function submitSignUp(e) {
         e.preventDefault();
         if(form.password !== form.confirmPassword) return alert("As senhas precisam ser iguais.")
 
         delete form.confirmPassword;
-        console.log(form)
-        //Enviar para o back
+        signUp(form);
     }
 
     return (
