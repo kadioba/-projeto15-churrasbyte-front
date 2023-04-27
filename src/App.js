@@ -8,6 +8,7 @@ import EditProduct from "./pages/Admin/EditProduct";
 import CartContext from "./contexts/CartContext";
 import { useState } from "react";
 import CartPage from "./pages/CartPage/CartPage";
+import ProductPage from "./pages/ProductPage/ProductPage";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/admin/products/add" element={<AddProduct />} />
           <Route path="/admin/products/edit/:id" element={<EditProduct />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
       </BrowserRouter>
     </CartContext.Provider>
