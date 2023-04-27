@@ -53,7 +53,7 @@ export default function EditProduct() {
 
                 <FormGroup>
                     <Label>Estoque:</Label>
-                    <Input type="number" name="stock" value={product.stock} onChange={handleChange} required />
+                    <Input type="number" name="stock" value={product.stock} onChange={handleChange} />
                 </FormGroup>
 
                 <FormGroup>
