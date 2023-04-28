@@ -16,25 +16,26 @@ function App() {
   const [cart, setCart] = useState(null)
   const [token, setToken] = useState(localStorage.getItem("token"))
   const [username, setUsername] = useState(localStorage.getItem("username"))
+
   return (
-    
+
     <AuthContext.Provider value={{ token, setToken, username, setUsername }}>
-    <CartContext.Provider value={{ cart, setCart }}>
+      <CartContext.Provider value={{ cart, setCart }}>
 
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/admin/products" element={<ProductList />} />
-        <Route path="/admin/products/add" element={<AddProduct />} />
-        <Route path="/admin/products/edit/:id" element={<EditProduct />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/product/:id" element={<ProductPage />} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/admin/products" element={<ProductList />} />
+            <Route path="/admin/products/add" element={<AddProduct />} />
+            <Route path="/admin/products/edit/:id" element={<EditProduct />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
 
-      </Routes>
-    </BrowserRouter>
-    </CartContext.Provider>
+          </Routes>
+        </BrowserRouter>
+      </CartContext.Provider>
     </AuthContext.Provider>
   );
 }

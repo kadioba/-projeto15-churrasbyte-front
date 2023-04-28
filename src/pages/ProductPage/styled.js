@@ -33,6 +33,10 @@ export const DescriptionContainer = styled.div`
   flex: 1 1 45%;
   text-align: center;
   padding: 1rem;
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
 `;
 
 export const ProductName = styled.h2`
@@ -60,8 +64,19 @@ export const AddToCartButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-
   &:hover {
     background-color: #0056b3;
   }
 `;
+
+export const ItensNumberSelector = styled.input`
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 100px;
+  margin-bottom: 10px;
+`
