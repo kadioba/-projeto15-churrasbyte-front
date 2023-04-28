@@ -26,17 +26,28 @@ export default function ProductPage() {
         })
     });
 
-    const handleChange = (event) => {
-        setProduct({ ...product, [event.target.name]: event.target.value });
-    };
+    function addToCart() {
+        const productToCart = { price: product.price, _id: product._id, quantity, name: product.name, imageURL: product.imageURL }
 
-    function addToCart(id) {
+        if (quantity > product.stock) return alert("A quantidade selecionada é maior que a disponivel")
         if (token === null || token === undefined || token === "") {
-            setCart([...cart, product])
+            setCart([...cart, productToCart])
         }
-        else
-            console.log(id)
+        if (token) {
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            const promisse = axios.post(`${process.env.REACT_APP_API_URL}/add-to-cart`, productToCart, config)
 
+            promisse.then(() => {
+                console.log("Produto adicionado com sucesso")
+            })
+            promisse.catch((error) => {
+                alert(error.response.data)
+            })
+        }
     }
 
     if (!product) {
@@ -55,8 +66,8 @@ export default function ProductPage() {
                 <ProductName>{product.name}</ProductName>
                 <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
                 <StockInfo>Quantidade em estoque: {product.stock}</StockInfo>
-                <ItensNumberSelector type="number" />
-                <AddToCartButton onClick={() => addToCart(product._id)}>Adicionar ao carrinho</AddToCartButton>
+                <ItensNumberSelector type="number" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                <AddToCartButton onClick={addToCart}>Adicionar ao carrinho</AddToCartButton>
             </DescriptionContainer>
         </ProductContainer>
     )

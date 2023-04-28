@@ -13,7 +13,7 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 
 
 function App() {
-  const [cart, setCart] = useState(null)
+  const [cart, setCart] = useState([])
   const [token, setToken] = useState(localStorage.getItem("token"))
   const [username, setUsername] = useState(localStorage.getItem("username"))
 
