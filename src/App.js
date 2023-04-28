@@ -10,6 +10,7 @@ import { useState } from "react";
 import CartPage from "./pages/CartPage/CartPage";
 import AuthContext from "./contexts/AuthContext";
 import ProductPage from "./pages/ProductPage/ProductPage";
+import Menu from "./components/Menu/Menu";
 
 
 function App() {
@@ -23,17 +24,17 @@ function App() {
       <CartContext.Provider value={{ cart, setCart }}>
 
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/admin/products" element={<ProductList />} />
-            <Route path="/admin/products/add" element={<AddProduct />} />
-            <Route path="/admin/products/edit/:id" element={<EditProduct />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-
-          </Routes>
+          <Menu/>
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/admin/products" element={<ProductList />} />
+              <Route path="/admin/products/add" element={<AddProduct />} />
+              <Route path="/admin/products/edit/:id" element={<EditProduct />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+            </Routes>
         </BrowserRouter>
       </CartContext.Provider>
     </AuthContext.Provider>
