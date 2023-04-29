@@ -1,37 +1,154 @@
 import styled from "styled-components"
 import CartContext from "../../contexts/CartContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
+import AuthContext from "../../contexts/AuthContext";
+import axios from "axios";
 
 export default function CartPage() {
 
+    const { cart, setCart } = useContext(CartContext)
+    const { token, setToken } = useContext(AuthContext)
+
+    const [cartToMap, setCartToMap] = useState(null)
+    console.log(cartToMap)
+
+    useEffect(() => {
+        if (token === null || token === undefined || token === "") {
+            setCartToMap(cart)
+        }
+        if (token) {
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            const promisse = axios.get(`${process.env.REACT_APP_API_URL}/get-cart`, config)
+
+            promisse.then((res) => {
+                setCartToMap(res.data)
+            })
+            promisse.catch((error) => {
+                alert(error.response.data)
+            })
+        }
+    }, []);
+
+    function getTotalPrice() {
+        let total = 0;
+        for (let i = 0; i < cartToMap.length; i++) {
+            total = total + (cartToMap[i].price * cartToMap[i].quantity)
+        }
+        return total.toFixed(2)
+    }
+
+    if (!cartToMap) return <></>
+
     return (
         <CartContainer>
-            <h1>Meu carrinho</h1>
-            <BotaoFinalizar>FINALIZAR COMPRA</BotaoFinalizar>
+            <CartItemsContainer>
+                {cartToMap.map((item) => (
+                    <CartItem key={item._id}>
+                        <CartItemImage src={item.imageURL} alt={item.name} />
+                        <CartItemInfo>
+                            <CartItemName>{item.name}</CartItemName>
+                            <CartItemPrice>${item.price}</CartItemPrice>
+                        </CartItemInfo>
+                        <CartItemActions>
+                            <CartItemButton onClick={() => console.log('CRIAR FUNCAO DE ADICIONAR 1')}>+</CartItemButton>
+                            <span>{item.quantity}</span>
+                            <CartItemButton onClick={() => console.log('CRIAR FUNCAO DE REMOVER 1')}>-</CartItemButton>
+                        </CartItemActions>
+                    </CartItem>
+                ))}
+            </CartItemsContainer>
+            <CartTotalContainer>
+                <CartTotal>Total: ${getTotalPrice()}</CartTotal>
+                <CheckoutButton onClick={() => console.log('CRIAR FUNCAO DE FINALIZAR COMPRA')}>Finalizar Compra</CheckoutButton>
+            </CartTotalContainer>
         </CartContainer>
     )
 }
 
-const CartContainer = styled.div`
-width: 100vw;
-background-color: red;
-display: flex;
-flex-direction: column;
-align-items: center;
-h1{
-  font-size: 2rem;
-  color: #333;
-  text-align: center;
-  margin-bottom: 40px;
-}
-`
 
-const BotaoFinalizar = styled.button`
-width: 80%;
-height: 80px;
-background-color: black;
-color: white;
-border: none;
-border-radius: 5px;
-`
+const CartContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+`;
+
+const CartItemsContainer = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CartItem = styled.div`
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+  background-color: yellow;
+`;
+
+const CartItemImage = styled.img`
+  width: 100px;
+  margin-left: 20px;
+`;
+
+const CartItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  margin-left: 20px;
+`;
+
+const CartItemName = styled.span`
+  font-size: 18px;
+  font-weight: bold;
+  background-color: aqua;
+`;
+
+const CartItemPrice = styled.span`
+  font-size: 16px;
+  background-color: red;
+`;
+
+const CartItemActions = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 43;
+`;
+
+const CartItemButton = styled.button`
+  border: none;
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+const CartTotalContainer = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+`;
+
+const CartTotal = styled.span`
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+const CheckoutButton = styled.button`
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+`;

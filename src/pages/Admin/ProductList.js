@@ -24,6 +24,10 @@ export default function ProductList() {
         })
     }
 
+    function goToProduct(id) {
+        navigate(`/product/${id}`)
+    }
+
     return (
         <TableContainer>
             <TitleAdmin>Produtos</TitleAdmin>
@@ -41,7 +45,7 @@ export default function ProductList() {
                 <tbody>
                     {products.map((product) => (
                         <tr key={product._id}>
-                            <TableCell>{product.name}</TableCell>
+                            <TableCell onClick={() => goToProduct(product._id)}>{product.name}</TableCell>
                             <TableCell>{product.description}</TableCell>
                             <TableCell>{product.price}</TableCell>
                             <TableCell>{product.category}</TableCell>
