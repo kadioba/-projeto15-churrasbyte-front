@@ -7,6 +7,7 @@ export const MenuDesktop = styled.header`
     left: 0px;
     top: 0px;
     z-index: 1;
+    background-color: white;
 
     @media (max-width: 769px) {
         display: none;
@@ -36,14 +37,16 @@ export const MenuMobile = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px #DBDBDB solid;  
+    border-bottom: 1px #DBDBDB solid;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  
 
 `
 
 
 export const MenuHeader = styled.header`
     width: 100%;
-    padding: 0 100px;
+    padding: 0 70px;
     height: 80px;
     display: flex;
     align-items: center;
@@ -152,7 +155,10 @@ export const CategoriesContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px #DBDBDB solid;  
+    background-color: white;
+    border-bottom: 1px #DBDBDB solid;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  
     h2{
         :hover{
             font-weight: 500;
