@@ -1,6 +1,10 @@
 import styled from "styled-components"
+import CartContext from "../../contexts/CartContext";
+import { useContext } from "react";
+import { useState } from "react";
 
 export default function CartPage() {
+
     return (
         <CartContainer>
             <h1>Meu carrinho</h1>

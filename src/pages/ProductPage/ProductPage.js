@@ -9,6 +9,7 @@ import AuthContext from "../../contexts/AuthContext";
 export default function ProductPage() {
 
     const { cart, setCart } = useContext(CartContext);
+    console.log(cart)
     const { token, setToken } = useContext(AuthContext)
 
     const [product, setProduct] = useState(null)
@@ -27,11 +28,25 @@ export default function ProductPage() {
     });
 
     function addToCart() {
-        const productToCart = { price: product.price, _id: product._id, quantity, name: product.name, imageURL: product.imageURL }
+        const productToCart = { price: Number(product.price), _id: product._id, quantity: Number(quantity), name: product.name, imageURL: product.imageURL }
 
-        if (quantity > product.stock) return alert("A quantidade selecionada é maior que a disponivel")
-        if (token === null || token === undefined || token === "") {
-            setCart([...cart, productToCart])
+/*         if (quantity > product.stock) return alert("A quantidade selecionada é maior que a disponivel")
+ */        if (token === null || token === undefined || token === "") {
+            const existingProduct = cart.find(item => item._id === productToCart._id)
+            if (existingProduct) {
+                const newCart = cart.map(item => {
+                    if (item._id === productToCart._id) {
+                        item.quantity += productToCart.quantity
+                    }
+                    return item
+
+                })
+                setCart(newCart)
+            }
+            if (!existingProduct) {
+                setCart([...cart, productToCart])
+
+            }
         }
         if (token) {
             const config = {
