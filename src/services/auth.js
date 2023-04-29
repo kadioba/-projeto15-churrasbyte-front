@@ -30,3 +30,20 @@ export function useLogin() {
             .catch((err) => alert(err.response.data))
     }
 }
+
+export function useLogout() {
+    const { token, setToken, setUsername } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+
+    return () => {
+        axios.post(`${process.env.REACT_APP_API_URL}/logout`, {}, config)
+            .then(() => {
+                setToken(undefined)
+                setUsername(undefined)
+                localStorage.clear()
+                navigate("/")
+            })
+            .catch((err) => alert(err.response.data))
+    }
+}

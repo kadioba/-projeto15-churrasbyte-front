@@ -3,11 +3,13 @@ import { UserOptions, LoginOptions, UserIcon, UserContainerBoxed } from "./style
 import { FaUserCircle } from "react-icons/fa"
 import { useContext, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
+import { useLogout } from "../../services/auth";
 
 
 export default function UserContainer({setOpen}) {
     const {userImage, username, token} = useContext(AuthContext)
-    
+    const logout = useLogout();
+
     return (
         <>
             {!token ?
@@ -34,7 +36,7 @@ export default function UserContainer({setOpen}) {
                         <h1>Seja bem vindo, {username}</h1>
                         <UserOptions>
                             <Link to={"/sign-up"} onClick={()=> setOpen(false)}> MINHA CONTA</Link>
-                            <Link to={"/sign-up"} onClick={()=> setOpen(false)}> SAIR</Link>
+                            <Link onClick={logout}> SAIR</Link>
                         </UserOptions>
                     </LoginOptions>
                 </UserContainerBoxed>

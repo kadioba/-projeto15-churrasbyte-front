@@ -68,7 +68,7 @@ export const LogoMenu = styled.img`
 export const StyledInput = styled.input`
         font-family: 'Roboto';
         font-size: 18px;
-        width: 50%;
+        width: 45%;
         border-radius: 5px;
         outline: none;
         border: 1px solid #ccc;
@@ -92,13 +92,18 @@ export const UserContainerBoxed = styled.div`
     display: flex;
     align-items: center;
     padding: 10px 0px 5px 10px;
+    width: 250px;
     a{
         color: black;
         font-weight: 700;
         text-decoration: none;
     }
-`
 
+    @media (max-width: 769px) {
+        width: 100%;
+    }
+
+`
 
 export const UserImagePlaceholder = styled.div`
     height: 31px;
