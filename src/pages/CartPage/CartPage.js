@@ -32,7 +32,7 @@ export default function CartPage() {
                 alert(error.response.data)
             })
         }
-    }, []);
+    }, [cart]);
 
     function getTotalPrice() {
         let total = 0;
@@ -40,6 +40,55 @@ export default function CartPage() {
             total = total + (cartToMap[i].price * cartToMap[i].quantity)
         }
         return total.toFixed(2)
+    }
+
+    function modifyQuantity(_id, operator) {
+
+        if (token === null || token === undefined || token === "") {
+            const existingProduct = cart.find(item => item._id === _id)
+            if (operator === "sum") {
+                if (existingProduct) {
+                    const newCart = cart.map(item => {
+                        if (item._id === _id) {
+                            item.quantity += 1
+                        }
+                        return item
+
+                    })
+                    setCart(newCart)
+                }
+
+            }
+            if (operator === "sub") {
+                if (existingProduct) {
+                    const newCart = cart.map(item => {
+                        if (item._id === _id) {
+                            item.quantity -= 1
+                        }
+                        return item
+
+                    })
+                    setCart(newCart)
+                }
+
+
+            }
+        }
+        if (token) {
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            const promisse = axios.put(`${process.env.REACT_APP_API_URL}/edit-from-cart/${_id}`, { _id, operator: operator }, config)
+
+            promisse.then((res) => {
+                setCartToMap(res.data)
+            })
+            promisse.catch((error) => {
+                alert(error.response.data)
+            })
+        }
     }
 
     if (!cartToMap) return <></>
@@ -55,9 +104,9 @@ export default function CartPage() {
                             <CartItemPrice>${item.price}</CartItemPrice>
                         </CartItemInfo>
                         <CartItemActions>
-                            <CartItemButton onClick={() => console.log('CRIAR FUNCAO DE ADICIONAR 1')}>+</CartItemButton>
+                            <CartItemButton onClick={() => modifyQuantity(item._id, "sum")}>+</CartItemButton>
                             <span>{item.quantity}</span>
-                            <CartItemButton onClick={() => console.log('CRIAR FUNCAO DE REMOVER 1')}>-</CartItemButton>
+                            <CartItemButton onClick={() => modifyQuantity(item._id, "sub")}>-</CartItemButton>
                         </CartItemActions>
                     </CartItem>
                 ))}
