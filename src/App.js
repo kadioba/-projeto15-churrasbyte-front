@@ -11,6 +11,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import AuthContext from "./contexts/AuthContext";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Menu from "./components/Menu/Menu";
+import { useEffect } from "react";
 
 
 function App() {

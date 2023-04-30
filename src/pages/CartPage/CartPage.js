@@ -42,37 +42,21 @@ export default function CartPage() {
         return total.toFixed(2)
     }
 
-    function modifyQuantity(_id, operator) {
+    function modifyQuantity(_id, quantity) {
 
         if (token === null || token === undefined || token === "") {
             const existingProduct = cart.find(item => item._id === _id)
-            if (operator === "sum") {
-                if (existingProduct) {
-                    const newCart = cart.map(item => {
-                        if (item._id === _id) {
-                            item.quantity += 1
-                        }
-                        return item
+            if (existingProduct) {
+                const newCart = cart.map(item => {
+                    if (item._id === _id) {
+                        item.quantity = quantity
+                    }
+                    return item
 
-                    })
-                    setCart(newCart)
-                }
-
+                })
+                setCart(newCart)
             }
-            if (operator === "sub") {
-                if (existingProduct) {
-                    const newCart = cart.map(item => {
-                        if (item._id === _id) {
-                            item.quantity -= 1
-                        }
-                        return item
 
-                    })
-                    setCart(newCart)
-                }
-
-
-            }
         }
         if (token) {
             const config = {
@@ -80,7 +64,7 @@ export default function CartPage() {
                     "Authorization": `Bearer ${token}`
                 }
             }
-            const promisse = axios.put(`${process.env.REACT_APP_API_URL}/edit-from-cart/${_id}`, { _id, operator: operator }, config)
+            const promisse = axios.put(`${process.env.REACT_APP_API_URL}/update-one/${_id}`, { quantity }, config)
 
             promisse.then((res) => {
                 setCartToMap(res.data)
@@ -104,9 +88,9 @@ export default function CartPage() {
                             <CartItemPrice>${item.price}</CartItemPrice>
                         </CartItemInfo>
                         <CartItemActions>
-                            <CartItemButton onClick={() => modifyQuantity(item._id, "sum")}>+</CartItemButton>
+                            <CartItemButton onClick={() => modifyQuantity(item._id, (item.quantity + 1))}>+</CartItemButton>
                             <span>{item.quantity}</span>
-                            <CartItemButton onClick={() => modifyQuantity(item._id, "sub")}>-</CartItemButton>
+                            <CartItemButton onClick={() => modifyQuantity(item._id, (item.quantity - 1))}>-</CartItemButton>
                         </CartItemActions>
                     </CartItem>
                 ))}
