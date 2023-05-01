@@ -35,7 +35,7 @@ export default function UserContainer({setOpen}) {
                     <LoginOptions logged={token} >
                         <h1>Seja bem vindo, {username}</h1>
                         <UserOptions>
-                            <Link to={"/sign-up"} onClick={()=> setOpen(false)}> MINHA CONTA</Link>
+                            <Link to={"/profile"} onClick={()=> setOpen(false)}> MINHA CONTA</Link>
                             <Link onClick={logout}> SAIR</Link>
                         </UserOptions>
                     </LoginOptions>
