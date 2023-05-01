@@ -50,7 +50,7 @@ export default function ProfilePage() {
                             value={value}
                             onChange={(e) => setValue(e.target.value)}>
                         </input>
-                        <button> <FaAngleRight /> </button>
+                        <button type="submit"> <FaAngleRight /> </button>
                     </ImageEditorForm>
                 </ImageContainer>
 

@@ -42,7 +42,7 @@ export default function Menu() {
                             onChange={(e)=>setValue(e.target.value)}
                         />
 
-                        <SubmitButton> <FaSearch /> </SubmitButton>
+                        <SubmitButton type="submit"> <FaSearch /> </SubmitButton>
                     </StyledForm>
 
 
@@ -77,7 +77,7 @@ export default function Menu() {
                             placeholder="Busque aqui"
                         />
 
-                        <SubmitButton> <FaSearch /> </SubmitButton>
+                        <SubmitButton type="submit"> <FaSearch /> </SubmitButton>
 
                     </StyledForm>
                     <CartContainer onClick={() => { setOpen(false); navigate("/cart") }}>
