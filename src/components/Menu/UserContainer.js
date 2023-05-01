@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { UserOptions, LoginOptions, UserIcon, UserContainerBoxed } from "./styled";
 import { FaUserCircle } from "react-icons/fa"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { useLogout } from "../../services/auth";
 
 
 export default function UserContainer({setOpen}) {
-    const {userImage, username, token} = useContext(AuthContext)
+    const {userImage, username, token, setImage} = useContext(AuthContext)
     const logout = useLogout();
 
     return (
@@ -29,7 +29,8 @@ export default function UserContainer({setOpen}) {
                 <UserContainerBoxed>
                     <UserIcon>
                         <img 
-                            src={userImage ? userImage : "https://images.nightcafe.studio//assets/profile.png" }/>
+                            src={userImage}
+                        />
                     </UserIcon>
 
                     <LoginOptions logged={token} >
