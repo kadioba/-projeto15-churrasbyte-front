@@ -13,6 +13,7 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 import Menu from "./components/Menu/Menu";
 import FilterContext from "./contexts/FilterContext";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   const [cart, setCart] = useState([])
@@ -39,9 +40,10 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </BrowserRouter>
-          
+
         </FilterContext.Provider>
       </AuthContext.Provider>
     </CartContext.Provider>
