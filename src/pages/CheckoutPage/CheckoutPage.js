@@ -53,7 +53,10 @@ export default function CheckoutPage() {
         event.preventDefault();
 
         const promisse = axios.post(`${process.env.REACT_APP_API_URL}/new-invoice`, formData)
-        promisse.catch((res) => console.log(res))
+        promisse.catch((res) => {
+            console.log(res)
+            setCart([])
+        })
         promisse.then((err) => console.log(err))
     };
 
