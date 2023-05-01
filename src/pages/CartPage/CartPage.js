@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CartPage() {
 
@@ -11,7 +12,8 @@ export default function CartPage() {
     const { token, setToken } = useContext(AuthContext)
 
     const [cartToMap, setCartToMap] = useState(null)
-    console.log(cartToMap)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (token === null || token === undefined || token === "") {
@@ -97,7 +99,7 @@ export default function CartPage() {
             </CartItemsContainer>
             <CartTotalContainer>
                 <CartTotal>Total: ${getTotalPrice()}</CartTotal>
-                <CheckoutButton onClick={() => console.log('CRIAR FUNCAO DE FINALIZAR COMPRA')}>Finalizar Compra</CheckoutButton>
+                <CheckoutButton onClick={() => navigate("/checkout")}>Finalizar Compra</CheckoutButton>
             </CartTotalContainer>
         </CartContainer>
     )

@@ -9,6 +9,7 @@ export default function CheckoutPage() {
     const { cart, setCart } = useContext(CartContext)
     const { token, setToken } = useContext(AuthContext)
     const [formData, setFormData] = useState(null);
+    console.log(formData)
     useEffect(() => {
         if (token) {
             const config = {
@@ -20,8 +21,8 @@ export default function CheckoutPage() {
 
             promisse.then((res) => {
                 const userData = res.data
-                delete userData._id
                 userData.userId = res.data._id
+                delete userData._id
                 setFormData({ ...res.data, adress: "", creditCard: "", cvv: "", expireDate: "", total: getInvoiceTotal(res.data.cart) })
             })
             promisse.catch((error) => {
@@ -128,7 +129,7 @@ export default function CheckoutPage() {
                         </FormGroup>
                     </div>
                 </CardForm>
-                <h1>Total : R$ {getInvoiceTotal(formData)}</h1>
+                <h1>Total : R$ {formData.total}</h1>
                 <CheckoutButton type="submit">Finalizar Compra</CheckoutButton>
             </Form>
         </CheckoutContainer>
