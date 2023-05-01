@@ -39,10 +39,7 @@ export const MenuMobile = styled.header`
     align-items: center;
     border-bottom: 1px #DBDBDB solid;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-  
-
 `
-
 
 export const MenuHeader = styled.header`
     width: 100%;
@@ -52,6 +49,9 @@ export const MenuHeader = styled.header`
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px #DBDBDB solid;  
+    form {
+        width: 100%;
+    }
 `
 
 export const LogoMenu = styled.img`
@@ -68,10 +68,18 @@ export const LogoMenu = styled.img`
     }
 `
 
+export const StyledForm = styled.form`
+        max-width: 45%;
+                    position: relative;
+        @media (max-width: 769px) {
+            min-width: 60%;
+            margin-left: 10px;
+    }
+`
 export const StyledInput = styled.input`
+        width: 100%;
         font-family: 'Roboto';
         font-size: 18px;
-        width: 45%;
         border-radius: 5px;
         outline: none;
         border: 1px solid #ccc;
@@ -85,11 +93,23 @@ export const StyledInput = styled.input`
     @media (max-width: 769px) {
         font-size: 13px;
         padding: 7px 15px;
-        width: 70%;
-        margin-left: 10px;
     }
 `
 
+export const SubmitButton = styled.button`
+    top: 12px;
+    right: 10px;
+    position: absolute;
+    border: 0px;
+    background-color: transparent;
+    font-size: 19px;
+    color: grey;
+
+    @media (max-width: 769px) {
+         top: 5px;
+         right: 10px;
+    }
+`
 
 export const UserContainerBoxed = styled.div`
     display: flex;

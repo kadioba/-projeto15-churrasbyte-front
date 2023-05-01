@@ -60,7 +60,10 @@ export default function AddProduct() {
                         <option value="">Escolha uma categoria</option>
                         <option value="facas">Facas</option>
                         <option value="espetos">Espetos</option>
-                        <option value="tabuas">Tabuas</option>
+                        <option value="tabuas">Tábuas</option>
+                        <option value="kits">Kits</option>
+                        <option value="cutelos">Cutelos</option>
+                        <option value="facasArt">Facas Artesanais</option>
                     </Select>
                 </FormGroup>
 

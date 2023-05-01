@@ -7,6 +7,10 @@ export const MainHomeContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    @media (max-width: 769px) {
+        margin-top: 80px;
+    }
+
 `
 
 export const ProductCardContainer = styled.div`
@@ -43,6 +47,8 @@ export const ProductStockContainer = styled.div`
     border: 2px ${mainColorButton} solid ;
     border-radius: 10px;
     padding: 6px;
+    font-size: 10px;
+    background-color: white;
 `
 
 export const ProductImg = styled.img`

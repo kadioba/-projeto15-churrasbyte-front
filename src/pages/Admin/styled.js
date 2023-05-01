@@ -6,12 +6,22 @@ export const FormContainer = styled.div`
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
+  margin-top: 110px;
+
+@media (max-width: 769px) {
+    margin-top: 80px;
+  }
 `;
 
 export const TableContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  margin-top: 110px;
+
+  @media (max-width: 769px) {
+      margin-top: 80px;
+    }
 `;
 
 export const TitleAdmin = styled.h1`

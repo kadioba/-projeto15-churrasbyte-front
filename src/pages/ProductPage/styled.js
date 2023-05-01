@@ -13,6 +13,10 @@ export const ProductContainer = styled.div`
   background-color: #f8f9fa;
   margin: 1rem;
   max-width: 100vw;
+  margin-top: 110px;
+@media (max-width: 769px) {
+    margin-top: 80px;
+}
 `;
 
 export const ImageContainer = styled.div`

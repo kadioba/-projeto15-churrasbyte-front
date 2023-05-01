@@ -4,7 +4,7 @@ import { AiOutlineMenu } from "react-icons/ai"
 import { useState } from "react";
 import UserContainer from "./UserContainer";
 
-export default function DropDownMenu({ categories, open , setOpen}) {
+export default function DropDownMenu({ handleFilter, categories, open , setOpen}) {
 
     return (
         <DropButton>
@@ -15,7 +15,7 @@ export default function DropDownMenu({ categories, open , setOpen}) {
             <DropDownContent isOpen={open}>
                 <UserContainer setOpen = {setOpen}/>
                 <CategoriesContainer>
-                    {categories.map(c => <h2 key={c}>{c}</h2>)}
+                    {categories.map(c => <h2 key={c} onClick={() => {setOpen(false);handleFilter(c[1])}}>{c[0]}</h2>)}
                 </CategoriesContainer>
             </DropDownContent>
 
