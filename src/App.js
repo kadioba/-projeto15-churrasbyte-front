@@ -11,13 +11,14 @@ import CartPage from "./pages/CartPage/CartPage";
 import AuthContext from "./contexts/AuthContext";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Menu from "./components/Menu/Menu";
-import { useEffect } from "react";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 
 
 function App() {
   const [cart, setCart] = useState([])
   const [token, setToken] = useState(localStorage.getItem("token"))
   const [username, setUsername] = useState(localStorage.getItem("username"))
+
 
   return (
     <CartContext.Provider value={{ cart, setCart }}>
@@ -35,6 +36,7 @@ function App() {
             <Route path="/admin/products/edit/:id" element={<EditProduct />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>
