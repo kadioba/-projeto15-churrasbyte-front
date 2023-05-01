@@ -9,7 +9,6 @@ export default function CheckoutPage() {
     const { cart, setCart } = useContext(CartContext)
     const { token, setToken } = useContext(AuthContext)
     const [formData, setFormData] = useState(null);
-    console.log(formData)
     useEffect(() => {
         if (token) {
             const config = {
@@ -20,10 +19,11 @@ export default function CheckoutPage() {
             const promisse = axios.get(`${process.env.REACT_APP_API_URL}/user`, config)
 
             promisse.then((res) => {
-                const userData = res.data
+                const {email, name, cart} = res.data
+                const userData = {email, name, cart}
                 userData.userId = res.data._id
-                delete userData._id
-                setFormData({ ...res.data, adress: "", creditCard: "", cvv: "", expireDate: "", total: getInvoiceTotal(res.data.cart) })
+                console.log({ ...userData, adress: "", creditCard: "", cvv: "", expireDate: "", total: getInvoiceTotal(userData.cart) })
+                setFormData({ ...userData, adress: "", creditCard: "", cvv: "", expireDate: "", total: getInvoiceTotal(userData.cart) })
             })
             promisse.catch((error) => {
                 alert(error.response.data)
@@ -57,7 +57,7 @@ export default function CheckoutPage() {
             console.log(res)
             setCart([])
         })
-        promisse.then((err) => console.log(err))
+        promisse.then((err) => console.log((err)))
     };
 
     if (!formData) {
