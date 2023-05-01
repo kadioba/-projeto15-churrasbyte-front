@@ -70,7 +70,7 @@ export const LogoMenu = styled.img`
 
 export const StyledForm = styled.form`
         max-width: 45%;
-                    position: relative;
+        position: relative;
         @media (max-width: 769px) {
             min-width: 60%;
             margin-left: 10px;

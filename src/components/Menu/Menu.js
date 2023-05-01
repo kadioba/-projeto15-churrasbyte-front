@@ -3,7 +3,7 @@ import { MenuDesktop, MenuHeader, MenuResponsiveContainer, MenuMobile, Categorie
 import { FaShoppingCart, FaSearch } from "react-icons/fa"
 import UserContainer from "./UserContainer";
 import DropDownMenu from "./DropDownMenu";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FilterContext from "../../contexts/FilterContext";
 import useForm from "../../hooks/useForm"
 
@@ -22,8 +22,6 @@ export default function Menu() {
     function submitInput(e) {
         e.preventDefault();
         setSearch(value.toLowerCase());
-        console.log(value)
-        //setValue("")
       }
 
     return (

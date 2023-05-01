@@ -19,13 +19,14 @@ function App() {
   const [cart, setCart] = useState([])
   const [token, setToken] = useState(localStorage.getItem("token"))
   const [username, setUsername] = useState(localStorage.getItem("username"))
+  const [userImage, setImage] = useState(localStorage.getItem("image"))
   const [filter, setFilter] = useState("");
   const [searchWord, setSearch] = useState("")
 
 
   return (
     <CartContext.Provider value={{ cart, setCart }}>
-      <AuthContext.Provider value={{ token, setToken, username, setUsername }}>
+      <AuthContext.Provider value={{ token, setToken, username, setUsername, userImage, setImage }}>
         <FilterContext.Provider value={{ filter, setFilter, searchWord, setSearch }}>
 
           <BrowserRouter>
