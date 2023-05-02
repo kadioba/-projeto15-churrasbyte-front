@@ -74,7 +74,7 @@ export default function ProfilePage() {
             <h2> <FaShoppingCart /> &nbsp; RESUMO DOS SEUS ÚLTIMOS PEDIDOS  </h2>
 
             {purchase.map((p) => (
-                <PurchaseSection key={p._id} total={p.total} cart={p.cart} />
+                <PurchaseSection key={p._id} date={p.date} total={p.total} cart={p.cart} />
             ))}
         </ProfilePageContainer>
     )
