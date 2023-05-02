@@ -5,6 +5,7 @@ import { useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { CartContainer, CartItem, CartItemActions, CartItemButton, CartItemImage, CartItemInfo, CartItemName, CartItemPrice, CartItemsContainer, CartTotal, CartTotalContainer, CheckoutButton } from "./styled";
 
 export default function CartPage() {
 
@@ -106,87 +107,3 @@ export default function CartPage() {
 }
 
 
-const CartContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 150px;
-@media (max-width: 769px) {
-    margin-top: 100px;
-}
-`;
-
-const CartItemsContainer = styled.div`
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const CartItem = styled.div`
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 15px 0;
-  background-color: yellow;
-`;
-
-const CartItemImage = styled.img`
-  width: 100px;
-  margin-left: 20px;
-`;
-
-const CartItemInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  margin-left: 20px;
-`;
-
-const CartItemName = styled.span`
-  font-size: 18px;
-  font-weight: bold;
-  background-color: aqua;
-`;
-
-const CartItemPrice = styled.span`
-  font-size: 16px;
-  background-color: red;
-`;
-
-const CartItemActions = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 43;
-`;
-
-const CartItemButton = styled.button`
-  border: none;
-  background-color: #f1f1f1;
-  padding: 5px 10px;
-  font-size: 16px;
-  cursor: pointer;
-`;
-
-const CartTotalContainer = styled.div`
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-`;
-
-const CartTotal = styled.span`
-  font-size: 24px;
-  font-weight: bold;
-`;
-
-const CheckoutButton = styled.button`
-  padding: 10px 20px;
-  background-color: #0070f3;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-`;
