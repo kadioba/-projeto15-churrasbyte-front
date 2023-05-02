@@ -3,6 +3,7 @@ import styled from "styled-components"
 import CartContext from "../../contexts/CartContext";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
+import { CardForm, CardNumberInput, CheckoutButton, CheckoutContainer, CvvNumberInput, ExpiryDateInput, Form, FormGroup, Input, Label } from "./styled";
 
 export default function CheckoutPage() {
 
@@ -19,8 +20,8 @@ export default function CheckoutPage() {
             const promisse = axios.get(`${process.env.REACT_APP_API_URL}/user`, config)
 
             promisse.then((res) => {
-                const {email, name, cart} = res.data
-                const userData = {email, name, cart}
+                const { email, name, cart } = res.data
+                const userData = { email, name, cart }
                 userData.userId = res.data._id
                 setFormData({ ...userData, adress: "", creditCard: "", cvv: "", expireDate: "", total: getInvoiceTotal(userData.cart) })
             })
@@ -137,73 +138,3 @@ export default function CheckoutPage() {
         </CheckoutContainer>
     );
 };
-
-const CardForm = styled.div`
-width: 60%;
-background-color: yellow;
-display: flex;
-flex-direction: column;
-align-items: center;
-div{
-    display: flex;
-    justify-content: flex-start;
-}
-`
-const CardNumberInput = styled.input`
-width: 400px;
-height: 30px;
-border: solid 1px black;
-`
-const CvvNumberInput = styled.input`
-width: 200px;
-height: 30px;
-border: solid 1px black;
-`
-const ExpiryDateInput = styled.input`
-width: 200px;
-height: 30px;
-border: solid 1px black;
-`
-
-
-const CheckoutContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 150px;
-`;
-
-const Form = styled.form`
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const FormGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-`;
-
-const Label = styled.label`
-  font-size: 18px;
-  margin-bottom: 5px;
-`;
-
-const Input = styled.input`
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-`;
-
-const CheckoutButton = styled.button`
-  padding: 10px 20px;
-  background-color: #0070f3;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  margin-top: 20px;
-`;
