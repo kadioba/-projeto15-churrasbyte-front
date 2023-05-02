@@ -4,12 +4,14 @@ import CartContext from "../../contexts/CartContext";
 import AuthContext from "../../contexts/AuthContext";
 import axios from "axios";
 import { CardForm, CardNumberInput, CheckoutButton, CheckoutContainer, CvvNumberInput, ExpiryDateInput, Form, FormGroup, Input, Label } from "./styled";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutPage() {
 
     const { cart, setCart } = useContext(CartContext)
     const { token, setToken } = useContext(AuthContext)
     const [formData, setFormData] = useState(null);
+    const navigate = useNavigate()
     useEffect(() => {
         if (token) {
             const config = {
@@ -56,6 +58,7 @@ export default function CheckoutPage() {
         promisse.catch((res) => {
             console.log(res)
             setCart([])
+            navigate("/profile")
         })
         promisse.then((err) => console.log((err)))
     };
