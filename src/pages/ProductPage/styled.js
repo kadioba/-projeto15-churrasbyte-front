@@ -31,6 +31,9 @@ export const ImageContainer = styled.div`
     min-width: 300px;
     object-fit: cover;
   }
+  p{
+    margin-top: 10px;
+  }
 `;
 
 export const DescriptionContainer = styled.div`
