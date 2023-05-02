@@ -22,7 +22,6 @@ export default function CheckoutPage() {
                 const {email, name, cart} = res.data
                 const userData = {email, name, cart}
                 userData.userId = res.data._id
-                console.log({ ...userData, adress: "", creditCard: "", cvv: "", expireDate: "", total: getInvoiceTotal(userData.cart) })
                 setFormData({ ...userData, adress: "", creditCard: "", cvv: "", expireDate: "", total: getInvoiceTotal(userData.cart) })
             })
             promisse.catch((error) => {
