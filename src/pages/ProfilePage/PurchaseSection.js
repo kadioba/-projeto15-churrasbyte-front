@@ -1,9 +1,9 @@
-
 import { useEffect, useState } from "react";
 import { PurchaseContainer } from "./styled"
+import dayjs from "dayjs";
 
 export default function PurchaseSection(props) {
-    const {total, cart} = props;
+    const {total, cart, date} = props;
     const [productTotal, setTotal] = useState(0)
 
     useEffect(()=>{
@@ -28,7 +28,7 @@ export default function PurchaseSection(props) {
 
         <div>
             <h3> DATA </h3>
-            <h4> xx/xx/xxxx</h4>
+            <h4> {dayjs(date).format("DD/MM/YY")}</h4>
         </div>
 
         <div>
