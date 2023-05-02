@@ -10,6 +10,12 @@ export const ProfilePageContainer = styled.div`
     }
     @media (max-width: 769px) {
         margin-top: 80px;
+        padding: 10px 5px 0 5px;
+        h2{
+            padding-left: 5px;
+            text-align: center;
+            font-size: 18px;
+        }
     }
 `
 
@@ -22,15 +28,6 @@ export const ProfileInfoContainer = styled.div`
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,5%);
     margin-bottom: 30px;
     
-    img{
-        height: 100px;
-        border-radius: 100px;
-        margin-right: 30px;
-
-        :hover{
-
-        }
-    }
     div{
         display: flex;
         flex-direction: column;
@@ -42,6 +39,20 @@ export const ProfileInfoContainer = styled.div`
         h2{
             font-size: 18px;
         }
+    }
+
+    @media (max-width: 769px) {
+        display: flex;
+        padding: 20px 18px;
+        background-color: white;
+        box-shadow: 0px 0px 10px 5px rgba(0,0,0,5%);
+        margin-bottom: 30px;
+
+    div{
+        h1{
+            font-size: 18px;
+        }
+    }
     }
 `
 
@@ -71,6 +82,12 @@ position: relative;
         }
     }
 
+    @media (max-width: 769px) {
+        img{
+        height: 60px;
+    }
+    }
+
 `
 
 export const ImageEditorForm = styled.form`
@@ -91,6 +108,12 @@ export const ImageEditorForm = styled.form`
         position: absolute;
         right: 0;
         top: 1px;
+    }
+
+    @media (max-width: 769px) {
+        min-width: 200px;
+        bottom: 0;
+        left: 60px;
     }
 `
 export const PurchaseContainer = styled.div`
@@ -113,5 +136,23 @@ export const PurchaseContainer = styled.div`
         font-weight: 500;
     }
 
+    @media (max-width: 769px) {
+        padding: 20px 5px;
+        justify-content: space-evenly;
+        margin-top: 10px;
+        margin-bottom: 15px;
 
+        div{
+            margin: 0 5px;
+            justify-content: space-between;
+        }
+        h3{
+            font-size: 12px;
+            text-align: center;
+        }
+        h4{
+            font-size: 12px;
+            text-align: center;
+        }
+    }
 `
