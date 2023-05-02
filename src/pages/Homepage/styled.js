@@ -52,7 +52,6 @@ export const ProductStockContainer = styled.div`
 `
 
 export const ProductImg = styled.img`
-    background-color: blue;
     height: 10rem;
     width: 10rem;
     margin: 30px;
