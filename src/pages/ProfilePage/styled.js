@@ -93,3 +93,25 @@ export const ImageEditorForm = styled.form`
         top: 1px;
     }
 `
+export const PurchaseContainer = styled.div`
+    display: flex;
+    padding: 20px 18px;
+    background-color: white;
+    border: 1px #DBDBDB solid;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,5%);
+    margin-top: 30px;
+    justify-content: space-around;
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    h3{
+        margin-bottom: 15px;
+        font-weight: 500;
+    }
+
+
+`

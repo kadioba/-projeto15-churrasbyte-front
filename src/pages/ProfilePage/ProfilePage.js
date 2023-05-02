@@ -4,23 +4,27 @@ import AuthContext from "../../contexts/AuthContext";
 import { FaShoppingCart, FaPencilAlt, FaAngleRight } from "react-icons/fa"
 import useDontHaveToken from "../../hooks/useDontHaveToken";
 import axios from "axios";
+import PurchaseSection from "./PurchaseSection";
 
 
 export default function ProfilePage() {
     const { userImage, username, token, setImage } = useContext(AuthContext)
     const [openImageEditor, setOpen] = useState(false)
     const [value, setValue] = useState("")
+    const [purchase, setPurchase] = useState([])
 
     useDontHaveToken()
 
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+
     function submitInput(e) {
         e.preventDefault();
-        const config = {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        }
-        axios.put(`${process.env.REACT_APP_API_URL}/updateImage`, {image: value}, config)
+
+        axios.put(`${process.env.REACT_APP_API_URL}/updateImage`, { image: value }, config)
             .then((res) => {
                 setImage(value);
                 localStorage.setItem("image", value);
@@ -28,10 +32,18 @@ export default function ProfilePage() {
                 alert(err.response.data)
             });
 
-
         setOpen(false);
         setValue("");
     }
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/invoice`, config)
+            .then((res) => {
+                setPurchase(res.data)
+            }).catch((err) => {
+                alert(err.response.data)
+            });
+    }, [])
 
     return (
         <ProfilePageContainer>
@@ -59,7 +71,11 @@ export default function ProfilePage() {
                 </div>
             </ProfileInfoContainer>
 
-            <h2> <FaShoppingCart /> &nbsp; RESUMO DO SEU ÚLTIMO PEDIDO  </h2>
+            <h2> <FaShoppingCart /> &nbsp; RESUMO DOS SEUS ÚLTIMOS PEDIDOS  </h2>
+
+            {purchase.map((p) => (
+                <PurchaseSection key={p._id} total={p.total} cart={p.cart} />
+            ))}
         </ProfilePageContainer>
     )
 }
